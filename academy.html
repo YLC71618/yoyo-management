@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YOYO Star Academy</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Josefin+Sans:wght@300;400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0B1929;
+  --navy2: #112240;
+  --gold: #C9A84C;
+  --gold-light: #E8C97A;
+  --gold-pale: #F5E6C0;
+  --cream: #FAF7F0;
+  --white: #FFFFFF;
+  --text: #1A1A2E;
+  --muted: #6B7280;
+  --border: rgba(201,168,76,0.25);
+  --red: #C0392B;
+  --green: #27AE60;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Josefin Sans',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+/* ── PAGES ── */
+.page { display:none; min-height:100vh; }
+.page.active { display:block; }
+
+/* ── NAVBAR ── */
+.navbar {
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  background:rgba(11,25,41,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+  padding:0 40px;
+  display:flex; align-items:center; justify-content:space-between;
+  height:64px;
+}
+.nav-logo {
+  font-family:'Playfair Display',serif;
+  font-size:22px; font-weight:900;
+  color:var(--gold);
+  letter-spacing:2px;
+  cursor:pointer;
+}
+.nav-logo span { color:var(--white); font-weight:400; }
+.nav-links { display:flex; gap:32px; align-items:center; }
+.nav-links a {
+  color:rgba(255,255,255,0.75);
+  text-decoration:none;
+  font-size:12px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:color 0.2s;
+}
+.nav-links a:hover { color:var(--gold); }
+.nav-btn {
+  background:var(--gold);
+  color:var(--navy);
+  border:none;
+  padding:9px 22px;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.nav-btn:hover { background:var(--gold-light); }
+.nav-btn.outline {
+  background:transparent;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  margin-right:8px;
+}
+.nav-btn.outline:hover { background:var(--gold); color:var(--navy); }
+
+/* ── HERO ── */
+.hero {
+  min-height:100vh;
+  background: linear-gradient(160deg, var(--navy) 0%, #0D2137 50%, #1a1040 100%);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center; padding:100px 40px 60px;
+  position:relative; overflow:hidden;
+}
+.hero::before {
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 30%, rgba(201,168,76,0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 30% 30% at 20% 80%, rgba(201,168,76,0.05) 0%, transparent 60%);
+}
+.hero-badge {
+  display:inline-block;
+  border:1px solid var(--gold);
+  color:var(--gold);
+  font-size:10px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  padding:6px 20px;
+  margin-bottom:30px;
+  position:relative;
+}
+.hero h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(48px,8vw,96px);
+  font-weight:900;
+  color:var(--white);
+  line-height:1;
+  position:relative;
+  margin-bottom:8px;
+}
+.hero h1 em {
+  font-style:italic;
+  color:var(--gold);
+}
+.hero-sub {
+  font-family:'Lora',serif;
+  font-style:italic;
+  font-size:18px;
+  color:rgba(255,255,255,0.55);
+  margin-bottom:40px;
+  position:relative;
+}
+.hero-divider {
+  width:80px; height:1px;
+  background:linear-gradient(90deg, transparent, var(--gold), transparent);
+  margin:0 auto 40px;
+}
+.hero-desc {
+  max-width:560px;
+  font-size:14px;
+  color:rgba(255,255,255,0.6);
+  line-height:1.9;
+  letter-spacing:0.5px;
+  margin-bottom:50px;
+  position:relative;
+}
+.hero-btns { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; position:relative; }
+.btn-primary {
+  background:var(--gold);
+  color:var(--navy);
+  border:none;
+  padding:14px 36px;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-primary:hover { background:var(--gold-light); transform:translateY(-2px); box-shadow:0 8px 24px rgba(201,168,76,0.3); }
+.btn-secondary {
+  background:transparent;
+  color:var(--white);
+  border:1px solid rgba(255,255,255,0.3);
+  padding:14px 36px;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:12px;
+  font-weight:600;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.2s;
+}
+.btn-secondary:hover { border-color:var(--gold); color:var(--gold); }
+
+/* Stars */
+.stars { position:absolute; inset:0; pointer-events:none; }
+.star {
+  position:absolute;
+  width:2px; height:2px;
+  background:var(--gold);
+  border-radius:50%;
+  opacity:0;
+  animation:twinkle var(--d,3s) var(--delay,0s) infinite;
+}
+@keyframes twinkle {
+  0%,100%{opacity:0} 50%{opacity:var(--op,0.6)}
+}
+
+/* ── PROGRAMS SECTION ── */
+.section { padding:80px 40px; max-width:1100px; margin:0 auto; }
+.section-tag {
+  font-size:10px; letter-spacing:4px; text-transform:uppercase;
+  color:var(--gold); margin-bottom:12px;
+}
+.section-title {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(32px,5vw,52px);
+  font-weight:700;
+  color:var(--navy);
+  margin-bottom:16px;
+  line-height:1.2;
+}
+.section-subtitle {
+  font-family:'Lora',serif;
+  font-style:italic;
+  color:var(--muted);
+  font-size:15px;
+  margin-bottom:50px;
+  max-width:500px;
+}
+.programs-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:24px; }
+.program-card {
+  background:var(--white);
+  border:1px solid var(--border);
+  padding:36px 28px;
+  position:relative;
+  overflow:hidden;
+  transition:all 0.3s;
+}
+.program-card::before {
+  content:'';
+  position:absolute; top:0; left:0; right:0; height:3px;
+  background:linear-gradient(90deg, var(--gold), var(--gold-light));
+  transform:scaleX(0); transform-origin:left;
+  transition:transform 0.3s;
+}
+.program-card:hover { transform:translateY(-6px); box-shadow:0 16px 40px rgba(0,0,0,0.1); }
+.program-card:hover::before { transform:scaleX(1); }
+.program-icon { font-size:36px; margin-bottom:16px; }
+.program-name {
+  font-family:'Playfair Display',serif;
+  font-size:20px; font-weight:700;
+  color:var(--navy); margin-bottom:8px;
+}
+.program-desc { font-size:13px; color:var(--muted); line-height:1.7; }
+
+/* ── STATS ── */
+.stats-bar {
+  background:var(--navy);
+  padding:50px 40px;
+  display:flex; justify-content:center; gap:80px; flex-wrap:wrap;
+}
+.stat { text-align:center; }
+.stat-number {
+  font-family:'Playfair Display',serif;
+  font-size:48px; font-weight:900;
+  color:var(--gold); display:block;
+}
+.stat-label { font-size:11px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,0.5); margin-top:4px; }
+
+/* ── ADMISSION SECTION ── */
+.admission-section {
+  background:linear-gradient(135deg, var(--navy) 0%, #112240 100%);
+  padding:80px 40px;
+}
+.admission-inner { max-width:700px; margin:0 auto; }
+.form-group { margin-bottom:20px; }
+.form-label {
+  display:block;
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  color:rgba(255,255,255,0.6); margin-bottom:8px;
+}
+.form-input, .form-select, .form-textarea {
+  width:100%;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(201,168,76,0.3);
+  color:var(--white);
+  padding:12px 16px;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:14px;
+  outline:none;
+  transition:border-color 0.2s;
+}
+.form-input::placeholder { color:rgba(255,255,255,0.3); }
+.form-input:focus, .form-select:focus, .form-textarea:focus { border-color:var(--gold); }
+.form-select { background:#112240; }
+.form-select option { background:#112240; }
+.form-textarea { min-height:100px; resize:vertical; }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+
+/* ── MODAL ── */
+.modal-overlay {
+  display:none; position:fixed; inset:0; z-index:2000;
+  background:rgba(0,0,0,0.7); backdrop-filter:blur(4px);
+  align-items:center; justify-content:center;
+}
+.modal-overlay.open { display:flex; }
+.modal {
+  background:var(--white);
+  max-width:460px; width:90%;
+  padding:48px 40px;
+  position:relative;
+  animation:modalIn 0.3s ease;
+}
+@keyframes modalIn { from{opacity:0;transform:scale(0.95)} to{opacity:1;transform:scale(1)} }
+.modal-close {
+  position:absolute; top:16px; right:16px;
+  background:none; border:none; font-size:20px;
+  cursor:pointer; color:var(--muted);
+}
+.modal-title {
+  font-family:'Playfair Display',serif;
+  font-size:28px; font-weight:700;
+  color:var(--navy); margin-bottom:6px;
+}
+.modal-sub { font-size:13px; color:var(--muted); margin-bottom:28px; }
+.modal .form-input {
+  background:var(--cream);
+  border:1px solid #ddd;
+  color:var(--text);
+}
+.modal .form-input::placeholder { color:#aaa; }
+.modal .form-input:focus { border-color:var(--gold); }
+.modal .form-label { color:var(--muted); }
+.modal-footer { margin-top:16px; font-size:12px; color:var(--muted); text-align:center; }
+.modal-footer a { color:var(--gold); cursor:pointer; text-decoration:underline; }
+.tab-switcher { display:flex; margin-bottom:28px; border-bottom:2px solid #eee; }
+.tab-switch-btn {
+  flex:1; padding:10px; background:none; border:none;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:12px; font-weight:600; letter-spacing:2px; text-transform:uppercase;
+  color:var(--muted); cursor:pointer;
+  border-bottom:2px solid transparent; margin-bottom:-2px;
+  transition:all 0.2s;
+}
+.tab-switch-btn.active { color:var(--navy); border-bottom-color:var(--gold); }
+.mode-toggle {
+  display:flex; gap:8px; margin-bottom:20px;
+  background:var(--cream); padding:4px; border-radius:4px;
+}
+.mode-btn {
+  flex:1; padding:8px; border:none;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:11px; font-weight:600; letter-spacing:1px; text-transform:uppercase;
+  cursor:pointer; border-radius:2px; transition:all 0.2s;
+  background:transparent; color:var(--muted);
+}
+.mode-btn.active { background:var(--navy); color:var(--gold); }
+
+/* ── DASHBOARD ── */
+.dashboard {
+  min-height:100vh;
+  background:var(--cream);
+  padding-top:64px;
+}
+.dash-sidebar {
+  position:fixed; top:64px; left:0; bottom:0;
+  width:240px;
+  background:var(--navy);
+  border-right:1px solid var(--border);
+  padding:24px 0;
+  overflow-y:auto;
+  z-index:500;
+}
+.dash-main {
+  margin-left:240px;
+  padding:32px 40px;
+  min-height:calc(100vh - 64px);
+}
+.sidebar-user {
+  padding:16px 24px 24px;
+  border-bottom:1px solid rgba(201,168,76,0.15);
+  margin-bottom:16px;
+}
+.sidebar-avatar {
+  width:48px; height:48px;
+  background:linear-gradient(135deg, var(--gold), var(--gold-light));
+  border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  font-family:'Playfair Display',serif;
+  font-size:20px; font-weight:700;
+  color:var(--navy);
+  margin-bottom:10px;
+}
+.sidebar-name { color:var(--white); font-size:14px; font-weight:600; margin-bottom:2px; }
+.sidebar-id { color:var(--gold); font-size:11px; letter-spacing:1px; }
+.sidebar-role {
+  display:inline-block; margin-top:6px;
+  font-size:9px; letter-spacing:2px; text-transform:uppercase;
+  padding:3px 10px;
+  background:rgba(201,168,76,0.15);
+  color:var(--gold);
+  border:1px solid rgba(201,168,76,0.3);
+}
+.sidebar-nav a {
+  display:flex; align-items:center; gap:12px;
+  padding:12px 24px;
+  color:rgba(255,255,255,0.6);
+  text-decoration:none;
+  font-size:12px; letter-spacing:1.5px; text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.2s;
+  border-left:3px solid transparent;
+}
+.sidebar-nav a:hover { color:var(--white); background:rgba(255,255,255,0.05); }
+.sidebar-nav a.active { color:var(--gold); border-left-color:var(--gold); background:rgba(201,168,76,0.08); }
+.sidebar-nav .nav-icon { font-size:16px; width:20px; text-align:center; }
+.sidebar-section {
+  font-size:9px; letter-spacing:3px; text-transform:uppercase;
+  color:rgba(255,255,255,0.25);
+  padding:16px 24px 6px;
+  margin-top:8px;
+}
+
+/* ── DASH PANELS ── */
+.dash-panel { display:none; }
+.dash-panel.active { display:block; animation:fadeIn 0.25s ease; }
+@keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+.dash-header { margin-bottom:28px; }
+.dash-title {
+  font-family:'Playfair Display',serif;
+  font-size:32px; font-weight:700;
+  color:var(--navy);
+}
+.dash-subtitle { font-size:13px; color:var(--muted); margin-top:4px; }
+
+/* Cards */
+.card {
+  background:var(--white);
+  border:1px solid #eee;
+  padding:24px 28px;
+  margin-bottom:20px;
+}
+.card-title {
+  font-family:'Playfair Display',serif;
+  font-size:18px; font-weight:700;
+  color:var(--navy); margin-bottom:16px;
+  display:flex; align-items:center; gap:10px;
+}
+.grid-3 { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:20px; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px; }
+.stat-card {
+  background:var(--white);
+  border:1px solid #eee;
+  padding:20px 24px;
+  border-top:3px solid var(--gold);
+}
+.stat-card-num {
+  font-family:'Playfair Display',serif;
+  font-size:36px; font-weight:900;
+  color:var(--navy);
+}
+.stat-card-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:4px; }
+
+/* Schedule Table */
+.schedule-table { width:100%; border-collapse:collapse; font-size:13px; }
+.schedule-table th {
+  background:var(--navy); color:var(--gold);
+  font-size:10px; letter-spacing:2px; text-transform:uppercase;
+  padding:10px 14px; text-align:left;
+}
+.schedule-table td { padding:12px 14px; border-bottom:1px solid #f0f0f0; }
+.schedule-table tr:hover td { background:#fafaf8; }
+.badge {
+  display:inline-block;
+  font-size:9px; letter-spacing:1px; text-transform:uppercase;
+  padding:3px 10px;
+}
+.badge-dance { background:#FEF3C7; color:#92400E; }
+.badge-vocal { background:#EDE9FE; color:#5B21B6; }
+.badge-science { background:#D1FAE5; color:#065F46; }
+.badge-lit { background:#DBEAFE; color:#1E40AF; }
+.badge-green { background:#D1FAE5; color:#065F46; }
+.badge-red { background:#FEE2E2; color:#991B1B; }
+.badge-gold { background:#FEF3C7; color:#92400E; }
+
+/* Grades */
+.grade-row { display:flex; align-items:center; gap:12px; padding:10px 0; border-bottom:1px solid #f0f0f0; }
+.grade-subject { flex:1; font-size:13px; }
+.grade-bar-wrap { flex:2; height:6px; background:#f0f0f0; border-radius:3px; overflow:hidden; }
+.grade-bar { height:100%; background:linear-gradient(90deg, var(--gold), var(--gold-light)); border-radius:3px; transition:width 1s ease; }
+.grade-score { font-family:'Playfair Display',serif; font-size:16px; font-weight:700; color:var(--navy); min-width:48px; text-align:right; }
+
+/* Notifications */
+.notif {
+  display:flex; gap:12px; padding:12px 0;
+  border-bottom:1px solid #f5f5f5; font-size:13px;
+}
+.notif-dot { width:8px; height:8px; border-radius:50%; background:var(--gold); margin-top:5px; flex-shrink:0; }
+.notif-text { color:var(--text); }
+.notif-time { font-size:11px; color:var(--muted); margin-top:2px; }
+
+/* Teacher: Student List */
+.student-list { }
+.student-row {
+  display:flex; align-items:center; gap:16px;
+  padding:14px 0; border-bottom:1px solid #f0f0f0;
+}
+.student-avatar {
+  width:38px; height:38px; border-radius:50%;
+  background:linear-gradient(135deg, var(--navy), #1a3a5c);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-weight:700; font-size:14px; flex-shrink:0;
+}
+.student-info { flex:1; }
+.student-name { font-size:14px; font-weight:600; color:var(--navy); }
+.student-id-text { font-size:11px; color:var(--gold); letter-spacing:1px; }
+.student-grade { font-family:'Playfair Display',serif; font-size:20px; font-weight:700; color:var(--navy); }
+
+/* Applications */
+.app-card {
+  background:var(--white);
+  border:1px solid #eee;
+  border-left:4px solid var(--gold);
+  padding:20px 24px;
+  margin-bottom:14px;
+}
+.app-card.pending { border-left-color:#F59E0B; }
+.app-card.approved { border-left-color:var(--green); }
+.app-card.interview { border-left-color:#6366F1; }
+.app-name { font-size:15px; font-weight:700; color:var(--navy); margin-bottom:4px; }
+.app-meta { font-size:12px; color:var(--muted); margin-bottom:12px; }
+.app-actions { display:flex; gap:8px; flex-wrap:wrap; }
+.btn-sm {
+  padding:6px 16px;
+  font-family:'Josefin Sans',sans-serif;
+  font-size:10px; font-weight:700; letter-spacing:1.5px; text-transform:uppercase;
+  border:none; cursor:pointer; transition:all 0.2s;
+}
+.btn-approve { background:var(--green); color:var(--white); }
+.btn-interview { background:#6366F1; color:var(--white); }
+.btn-reject { background:#f0f0f0; color:var(--muted); }
+.btn-sm:hover { opacity:0.85; }
+
+/* Create Student */
+.create-form { max-width:500px; }
+.generated-id {
+  background:var(--navy);
+  color:var(--gold);
+  padding:16px 24px;
+  font-family:'Playfair Display',serif;
+  font-size:28px; font-weight:700;
+  letter-spacing:4px;
+  text-align:center;
+  margin:16px 0;
+  display:none;
+}
+.generated-id.show { display:block; animation:fadeIn 0.4s ease; }
+
+/* Toast */
+.toast {
+  position:fixed; bottom:32px; right:32px;
+  background:var(--navy);
+  color:var(--white);
+  padding:14px 24px;
+  font-size:13px;
+  border-left:4px solid var(--gold);
+  z-index:9999;
+  opacity:0; pointer-events:none;
+  transform:translateY(10px);
+  transition:all 0.3s;
+  max-width:320px;
+}
+.toast.show { opacity:1; pointer-events:auto; transform:translateY(0); }
+
+/* Utility */
+.text-gold { color:var(--gold); }
+.text-muted { color:var(--muted); font-size:13px; }
+.mt-8 { margin-top:8px; }
+.mt-16 { margin-top:16px; }
+.flex { display:flex; }
+.gap-8 { gap:8px; }
+.items-center { align-items:center; }
+.justify-between { justify-content:space-between; }
+hr.divider { border:none; border-top:1px solid #eee; margin:20px 0; }
+
+/* Announcement */
+.announce {
+  background:linear-gradient(135deg, var(--navy), #1a3a5c);
+  color:var(--white); padding:16px 24px;
+  border-left:4px solid var(--gold);
+  margin-bottom:12px;
+  font-size:13px;
+}
+.announce-title { font-weight:700; color:var(--gold); margin-bottom:4px; font-size:14px; }
+
+/* Mobile */
+@media(max-width:768px){
+  .dash-sidebar { width:200px; }
+  .dash-main { margin-left:200px; padding:20px; }
+  .grid-3 { grid-template-columns:1fr; }
+  .grid-2 { grid-template-columns:1fr; }
+  .form-row { grid-template-columns:1fr; }
+  .stats-bar { gap:40px; }
+  .navbar { padding:0 20px; }
+}
+
+/* ── FOOTER ── */
+.footer {
+  background:var(--navy);
+  color:rgba(255,255,255,0.5);
+  text-align:center;
+  padding:40px;
+  font-size:12px;
+  letter-spacing:2px;
+}
+.footer span { color:var(--gold); }
+
+/* Attendance dots */
+.att-row { display:flex; gap:6px; align-items:center; margin-bottom:8px; font-size:13px; }
+.att-dot { width:10px; height:10px; border-radius:50%; flex-shrink:0; }
+.att-present { background:var(--green); }
+.att-absent { background:var(--red); }
+.att-late { background:#F59E0B; }
+
+/* Assignment card */
+.assignment-card {
+  border:1px solid #eee;
+  padding:16px 20px;
+  margin-bottom:12px;
+  display:flex; align-items:flex-start; justify-content:space-between; gap:12px;
+}
+.asgn-title { font-size:14px; font-weight:600; color:var(--navy); margin-bottom:4px; }
+.asgn-meta { font-size:11px; color:var(--muted); }
+.asgn-status { flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     GLOBAL NAVBAR
+═══════════════════════════════════════════ -->
+<nav class="navbar" id="mainNav">
+  <div class="nav-logo" onclick="goHome()">YOYO <span>Star Academy</span></div>
+  <div class="nav-links" id="navLinks">
+    <a onclick="scrollToPrograms()">Programs</a>
+    <a onclick="scrollToAdmission()">Admission</a>
+    <a onclick="showPage('home')">About</a>
+    <button class="nav-btn outline" onclick="openModal('signin')">Sign In</button>
+    <button class="nav-btn" onclick="openModal('signup')">Apply Now</button>
+  </div>
+  <div id="navLoggedIn" style="display:none;gap:12px;align-items:center;">
+    <span id="navUserName" style="color:rgba(255,255,255,0.7);font-size:12px;letter-spacing:1px;"></span>
+    <button class="nav-btn outline" onclick="logout()">Sign Out</button>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: HOME
+═══════════════════════════════════════════ -->
+<div id="page-home" class="page active">
+
+  <!-- HERO -->
+  <section class="hero" id="heroSection">
+    <div class="stars" id="starsContainer"></div>
+    <div class="hero-badge">Est. 2025 · Excellence in Arts & Academia</div>
+    <h1>YOYO <em>Star</em><br>Academy</h1>
+    <p class="hero-sub">Where Every Star Is Born</p>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">An elite performing arts and academic institution dedicated to nurturing extraordinary talent in Dance, Vocal Performance, Science, and Literature.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="scrollToAdmission()">Apply for Admission</button>
+      <button class="btn-secondary" onclick="openModal('signin')">Student Portal →</button>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <div class="stats-bar">
+    <div class="stat"><span class="stat-number">4</span><span class="stat-label">Programs</span></div>
+    <div class="stat"><span class="stat-number">12</span><span class="stat-label">Expert Faculty</span></div>
+    <div class="stat"><span class="stat-number">96%</span><span class="stat-label">Excellence Rate</span></div>
+    <div class="stat"><span class="stat-number">∞</span><span class="stat-label">Potential</span></div>
+  </div>
+
+  <!-- PROGRAMS -->
+  <section class="section" id="programsSection">
+    <div class="section-tag">Our Programs</div>
+    <h2 class="section-title">Four Paths to Excellence</h2>
+    <p class="section-subtitle">Each program is designed for passionate, dedicated individuals ready to reach their full potential.</p>
+    <div class="programs-grid">
+      <div class="program-card">
+        <div class="program-icon">💃</div>
+        <div class="program-name">Dance</div>
+        <div class="program-desc">Ballet, Hip-Hop, Contemporary, Jazz — from fundamentals to elite performance techniques.</div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🎤</div>
+        <div class="program-name">Vocal</div>
+        <div class="program-desc">Classical singing, pop performance, breathing techniques, and stage presence mastery.</div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">🔬</div>
+        <div class="program-name">Science</div>
+        <div class="program-desc">Physics, Chemistry, Biology — rigorous academic excellence with real-world application.</div>
+      </div>
+      <div class="program-card">
+        <div class="program-icon">📚</div>
+        <div class="program-name">Literature</div>
+        <div class="program-desc">Creative writing, world literature, critical analysis, and storytelling craft.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ADMISSION -->
+  <section class="admission-section" id="admissionSection">
+    <div class="admission-inner">
+      <div style="text-align:center;margin-bottom:40px;">
+        <div class="section-tag" style="color:var(--gold-light);">Enrollment</div>
+        <h2 class="section-title" style="color:var(--white);">Begin Your Journey</h2>
+        <p style="color:rgba(255,255,255,0.5);font-size:14px;font-family:'Lora',serif;font-style:italic;">Submit your application — our team will reach out within 48 hours to schedule an interview.</p>
+      </div>
+      <form id="admissionForm" onsubmit="submitAdmission(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name *</label>
+            <input class="form-input" id="adm_first" placeholder="Enter first name" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name *</label>
+            <input class="form-input" id="adm_last" placeholder="Enter last name" required>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Email Address *</label>
+            <input class="form-input" id="adm_email" type="email" placeholder="your@email.com" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Date of Birth</label>
+            <input class="form-input" id="adm_dob" type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">Program Interested In *</label>
+            <select class="form-select form-input" id="adm_program" required>
+              <option value="">-- Select Program --</option>
+              <option>Dance</option>
+              <option>Vocal Performance</option>
+              <option>Science</option>
+              <option>Literature</option>
+              <option>Multiple Programs</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Experience Level</label>
+            <select class="form-select form-input" id="adm_level">
+              <option>Beginner</option>
+              <option>Intermediate</option>
+              <option>Advanced</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Parent / Guardian Name</label>
+          <input class="form-input" id="adm_parent" placeholder="Parent or guardian name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Tell Us About Yourself *</label>
+          <textarea class="form-input form-textarea" id="adm_bio" placeholder="Share your passion, experience, and why you want to join YOYO Star Academy..." required></textarea>
+        </div>
+        <div style="text-align:center;margin-top:32px;">
+          <button type="submit" class="btn-primary" style="padding:16px 48px;">Submit Application →</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div style="font-size:24px;margin-bottom:12px;color:var(--gold);">★</div>
+    <div><span>YOYO Star Academy</span> · Excellence in Every Star</div>
+    <div style="margin-top:8px;font-size:10px;">© 2025 All Rights Reserved</div>
+  </footer>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: STUDENT DASHBOARD
+═══════════════════════════════════════════ -->
+<div id="page-student" class="page">
+  <div class="dashboard">
+    <!-- Sidebar -->
+    <div class="dash-sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" id="stuAvatar">S</div>
+        <div class="sidebar-name" id="stuName">Student Name</div>
+        <div class="sidebar-id" id="stuIDDisplay">YOYO-25-0001</div>
+        <div class="sidebar-role">Student</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Main</div>
+        <a class="active" onclick="showDashPanel('stu','home')"><span class="nav-icon">🏠</span>Dashboard</a>
+        <a onclick="showDashPanel('stu','schedule')"><span class="nav-icon">📅</span>Schedule</a>
+        <a onclick="showDashPanel('stu','assignments')"><span class="nav-icon">📝</span>Assignments</a>
+        <a onclick="showDashPanel('stu','grades')"><span class="nav-icon">⭐</span>Grades</a>
+        <div class="sidebar-section">More</div>
+        <a onclick="showDashPanel('stu','feedback')"><span class="nav-icon">💬</span>Feedback</a>
+        <a onclick="showDashPanel('stu','profile')"><span class="nav-icon">👤</span>My Profile</a>
+        <a onclick="logout()" style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;"><span class="nav-icon">🚪</span>Sign Out</a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="dash-main">
+
+      <!-- HOME -->
+      <div id="stu-home" class="dash-panel active">
+        <div class="dash-header">
+          <div class="dash-title">Good morning, <span class="text-gold" id="stuGreetName">Star</span> ✨</div>
+          <div class="dash-subtitle">Welcome back to YOYO Star Academy</div>
+        </div>
+        <div class="grid-3">
+          <div class="stat-card"><div class="stat-card-num">4</div><div class="stat-card-label">Enrolled Classes</div></div>
+          <div class="stat-card"><div class="stat-card-num">87%</div><div class="stat-card-label">Average Grade</div></div>
+          <div class="stat-card"><div class="stat-card-num">2</div><div class="stat-card-label">Pending Assignments</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📢 Announcements</div>
+            <div class="announce"><div class="announce-title">Talent Showcase — Dec 15</div>All students are invited to perform at our year-end showcase. Sign up with your teacher!</div>
+            <div class="announce" style="border-left-color:#6366F1;"><div class="announce-title" style="color:#6366F1;">Dance Class Rescheduled</div>Hip-Hop Elite A moved to Thursday 4PM this week due to studio maintenance.</div>
+          </div>
+          <div class="card">
+            <div class="card-title">🔔 Recent Notifications</div>
+            <div class="notif"><div class="notif-dot"></div><div><div class="notif-text">Ms. Chen left feedback on your assignment</div><div class="notif-time">2 hours ago</div></div></div>
+            <div class="notif"><div class="notif-dot" style="background:#6366F1;"></div><div><div class="notif-text">New assignment posted: Science Lab Report</div><div class="notif-time">Yesterday</div></div></div>
+            <div class="notif"><div class="notif-dot" style="background:var(--green);"></div><div><div class="notif-text">Grade updated: Vocal Performance — A</div><div class="notif-time">3 days ago</div></div></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">📅 Today's Classes</div>
+          <table class="schedule-table">
+            <thead><tr><th>Time</th><th>Subject</th><th>Teacher</th><th>Room</th></tr></thead>
+            <tbody>
+              <tr><td>09:00 – 10:30</td><td><span class="badge badge-science">Science</span> Physics</td><td>Mr. Park</td><td>Lab 2</td></tr>
+              <tr><td>14:00 – 15:30</td><td><span class="badge badge-dance">Dance</span> Hip-Hop Elite</td><td>Ms. Rivera</td><td>Studio A</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- SCHEDULE -->
+      <div id="stu-schedule" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">My Schedule</div><div class="dash-subtitle">Weekly timetable — Term 1, 2025</div></div>
+        <div class="card">
+          <div class="card-title">📅 Full Weekly Schedule</div>
+          <table class="schedule-table">
+            <thead><tr><th>Day</th><th>Time</th><th>Class</th><th>Teacher</th><th>Room</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Monday</td><td>09:00–10:30</td><td><span class="badge badge-science">Science</span> Physics</td><td>Mr. Park</td><td>Lab 2</td><td><span class="badge badge-green">Enrolled</span></td></tr>
+              <tr><td>Monday</td><td>13:00–14:30</td><td><span class="badge badge-lit">Literature</span> Creative Writing</td><td>Ms. Lim</td><td>Room 301</td><td><span class="badge badge-green">Enrolled</span></td></tr>
+              <tr><td>Wednesday</td><td>10:00–11:30</td><td><span class="badge badge-vocal">Vocal</span> Performance I</td><td>Ms. Chen</td><td>Music Hall</td><td><span class="badge badge-green">Enrolled</span></td></tr>
+              <tr><td>Thursday</td><td>16:00–17:30</td><td><span class="badge badge-dance">Dance</span> Hip-Hop Elite A</td><td>Ms. Rivera</td><td>Studio A</td><td><span class="badge badge-green">Enrolled</span></td></tr>
+              <tr><td>Friday</td><td>14:00–15:00</td><td><span class="badge badge-dance">Dance</span> Ballet Foundation</td><td>Ms. Rivera</td><td>Studio B</td><td><span class="badge badge-gold">Waitlisted #3</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- ASSIGNMENTS -->
+      <div id="stu-assignments" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Assignments</div><div class="dash-subtitle">Track and submit your work</div></div>
+        <div class="card">
+          <div class="card-title">📝 Pending</div>
+          <div class="assignment-card">
+            <div><div class="asgn-title">Science Lab Report — Velocity Experiment</div><div class="asgn-meta">Mr. Park · Due: Dec 10, 2025</div></div>
+            <div class="asgn-status"><span class="badge badge-red">Due Soon</span></div>
+          </div>
+          <div class="assignment-card">
+            <div><div class="asgn-title">Vocal — Record & Submit Practice Video</div><div class="asgn-meta">Ms. Chen · Due: Dec 14, 2025</div></div>
+            <div class="asgn-status"><span class="badge badge-gold">Pending</span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">✅ Completed & Graded</div>
+          <div class="assignment-card" style="opacity:0.75;">
+            <div><div class="asgn-title">Literature Essay — Character Analysis</div><div class="asgn-meta">Ms. Lim · Submitted Nov 28</div></div>
+            <div class="asgn-status"><span class="badge badge-green">92/100</span></div>
+          </div>
+          <div class="assignment-card" style="opacity:0.75;">
+            <div><div class="asgn-title">Dance — Choreography Proposal</div><div class="asgn-meta">Ms. Rivera · Submitted Nov 20</div></div>
+            <div class="asgn-status"><span class="badge badge-green">88/100</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GRADES -->
+      <div id="stu-grades" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">My Grades</div><div class="dash-subtitle">Academic performance overview</div></div>
+        <div class="card">
+          <div class="card-title">⭐ Subject Grades</div>
+          <div class="grade-row"><div class="grade-subject">💃 Dance — Hip-Hop Elite</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:88%"></div></div><div class="grade-score">88</div></div>
+          <div class="grade-row"><div class="grade-subject">🎤 Vocal Performance I</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:93%"></div></div><div class="grade-score">93</div></div>
+          <div class="grade-row"><div class="grade-subject">🔬 Physics</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:79%"></div></div><div class="grade-score">79</div></div>
+          <div class="grade-row"><div class="grade-subject">📚 Creative Writing</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:92%"></div></div><div class="grade-score">92</div></div>
+          <hr class="divider">
+          <div class="grade-row"><div class="grade-subject" style="font-weight:700;">Overall Average</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:88%;background:linear-gradient(90deg,#0B1929,#C9A84C)"></div></div><div class="grade-score" style="color:var(--gold);">88</div></div>
+        </div>
+        <div class="card">
+          <div class="card-title">🏅 Skill Level</div>
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;">
+            <div style="text-align:center;padding:16px 24px;background:var(--cream);border:2px solid var(--gold);">
+              <div style="font-family:'Playfair Display',serif;font-size:32px;font-weight:900;color:var(--gold);">⭐⭐⭐</div>
+              <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:4px;">Intermediate</div>
+            </div>
+            <div style="font-size:13px;color:var(--muted);max-width:300px;line-height:1.7;">Keep it up! Maintain grades above 90 across all subjects for 1 more term to reach <strong style="color:var(--gold);">Advanced ⭐⭐⭐⭐</strong> level.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEEDBACK -->
+      <div id="stu-feedback" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Teacher Feedback</div><div class="dash-subtitle">Personal notes from your instructors</div></div>
+        <div class="card">
+          <div style="border-left:3px solid var(--gold);padding-left:16px;margin-bottom:20px;">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:6px;">Ms. Chen · Vocal Performance · Nov 30</div>
+            <p style="font-size:14px;line-height:1.8;color:var(--text);">Exceptional progress this month. Your breath control has improved significantly since September. I particularly noticed your confidence during the solo practice — keep channeling that energy on stage. Focus next on dynamic range; your piano is beautiful but we need more contrast in your forte passages.</p>
+          </div>
+          <div style="border-left:3px solid #6366F1;padding-left:16px;margin-bottom:20px;">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:#6366F1;margin-bottom:6px;">Ms. Rivera · Dance · Nov 25</div>
+            <p style="font-size:14px;line-height:1.8;color:var(--text);">Strong performance in last week's routine. Your musicality is a real strength — you feel the beat naturally. Work on your landing technique; absorb through the knees more on jumps. Would love to see you audition for the showcase solo!</p>
+          </div>
+          <div style="border-left:3px solid var(--green);padding-left:16px;">
+            <div style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;">Ms. Lim · Literature · Nov 20</div>
+            <p style="font-size:14px;line-height:1.8;color:var(--text);">Your character analysis essay showed real insight. The way you connected the protagonist's internal conflict to the historical context was sophisticated thinking. Next assignment: try varying your sentence structure more — the essay could use more rhythmic variation.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- PROFILE -->
+      <div id="stu-profile" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">My Profile</div><div class="dash-subtitle">Your academy record</div></div>
+        <div class="card">
+          <div style="display:flex;gap:24px;align-items:flex-start;flex-wrap:wrap;">
+            <div style="text-align:center;">
+              <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--gold),var(--gold-light));display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:32px;font-weight:700;color:var(--navy);margin:0 auto 12px;" id="profileAvatar">S</div>
+              <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);">Student</div>
+            </div>
+            <div style="flex:1;">
+              <div style="font-family:'Playfair Display',serif;font-size:28px;font-weight:700;color:var(--navy);" id="profileName">—</div>
+              <div style="color:var(--gold);letter-spacing:2px;font-size:14px;margin:4px 0;" id="profileID">YOYO-25-0001</div>
+              <div style="font-size:13px;color:var(--muted);">Enrolled: 2025 · Status: <span style="color:var(--green);font-weight:600;">Active</span></div>
+            </div>
+          </div>
+          <hr class="divider">
+          <div class="grid-2">
+            <div><div class="form-label" style="color:var(--muted);">Email</div><div id="profileEmail" style="font-size:14px;">—</div></div>
+            <div><div class="form-label" style="color:var(--muted);">Program</div><div id="profileProgram" style="font-size:14px;">—</div></div>
+            <div><div class="form-label" style="color:var(--muted);">Level</div><div id="profileLevel" style="font-size:14px;">—</div></div>
+            <div><div class="form-label" style="color:var(--muted);">Skill Tier</div><div style="font-size:14px;">⭐⭐⭐ Intermediate</div></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAGE: TEACHER / ADMIN DASHBOARD
+═══════════════════════════════════════════ -->
+<div id="page-teacher" class="page">
+  <div class="dashboard">
+    <div class="dash-sidebar">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar" style="background:linear-gradient(135deg,#1a3a5c,#2d5a8a);">👑</div>
+        <div class="sidebar-name">Principal / Teacher</div>
+        <div class="sidebar-id">Admin Panel</div>
+        <div class="sidebar-role" style="color:var(--gold-light);">CEO Mode</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="sidebar-section">Management</div>
+        <a class="active" onclick="showDashPanel('tea','home')"><span class="nav-icon">🏠</span>Dashboard</a>
+        <a onclick="showDashPanel('tea','students')"><span class="nav-icon">🧑‍🎓</span>Students</a>
+        <a onclick="showDashPanel('tea','create')"><span class="nav-icon">➕</span>Create Student ID</a>
+        <a onclick="showDashPanel('tea','applications')"><span class="nav-icon">📨</span>Applications</a>
+        <div class="sidebar-section">Teaching</div>
+        <a onclick="showDashPanel('tea','classes')"><span class="nav-icon">🏫</span>Classes</a>
+        <a onclick="showDashPanel('tea','grading')"><span class="nav-icon">✏️</span>Grading</a>
+        <a onclick="showDashPanel('tea','schedule')"><span class="nav-icon">📅</span>Schedule</a>
+        <a onclick="logout()" style="margin-top:20px;border-top:1px solid rgba(255,255,255,0.08);padding-top:16px;"><span class="nav-icon">🚪</span>Sign Out</a>
+      </nav>
+    </div>
+
+    <div class="dash-main">
+
+      <!-- TEACHER HOME -->
+      <div id="tea-home" class="dash-panel active">
+        <div class="dash-header"><div class="dash-title">Academy Overview</div><div class="dash-subtitle">Welcome, Principal. Here's today's summary.</div></div>
+        <div class="grid-3">
+          <div class="stat-card"><div class="stat-card-num" id="totalStudents">3</div><div class="stat-card-label">Total Students</div></div>
+          <div class="stat-card"><div class="stat-card-num">5</div><div class="stat-card-label">Active Classes</div></div>
+          <div class="stat-card"><div class="stat-card-num" id="pendingApps">2</div><div class="stat-card-label">Pending Applications</div></div>
+        </div>
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-title">📨 Latest Applications</div>
+            <div class="notif"><div class="notif-dot" style="background:#F59E0B;"></div><div><div class="notif-text"><strong>Mei Lin</strong> applied for Dance Program</div><div class="notif-time">1 hour ago</div></div></div>
+            <div class="notif"><div class="notif-dot" style="background:#F59E0B;"></div><div><div class="notif-text"><strong>James Park</strong> applied for Science Program</div><div class="notif-time">3 hours ago</div></div></div>
+            <div style="margin-top:12px;"><button class="btn-sm btn-interview" onclick="showDashPanel('tea','applications')">View All Applications →</button></div>
+          </div>
+          <div class="card">
+            <div class="card-title">📊 Quick Stats</div>
+            <div class="grade-row"><div class="grade-subject">Dance Classes</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:90%"></div></div><div class="grade-score">90%</div></div>
+            <div class="grade-row"><div class="grade-subject">Vocal Classes</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:95%"></div></div><div class="grade-score">95%</div></div>
+            <div class="grade-row"><div class="grade-subject">Science Classes</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:78%"></div></div><div class="grade-score">78%</div></div>
+            <div class="grade-row"><div class="grade-subject">Literature</div><div class="grade-bar-wrap"><div class="grade-bar" style="width:88%"></div></div><div class="grade-score">88%</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STUDENTS LIST -->
+      <div id="tea-students" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Student Registry</div><div class="dash-subtitle">All enrolled students</div></div>
+        <div class="card">
+          <div class="card-title">🧑‍🎓 Enrolled Students</div>
+          <div id="studentRegistry">
+            <!-- populated by JS -->
+          </div>
+        </div>
+      </div>
+
+      <!-- CREATE STUDENT ID -->
+      <div id="tea-create" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Create Student ID</div><div class="dash-subtitle">Generate a new student account for enrollment</div></div>
+        <div class="card">
+          <div class="card-title">➕ New Student Registration</div>
+          <div class="create-form">
+            <div class="form-group">
+              <label class="form-label" style="color:var(--muted);">Full Name *</label>
+              <input class="form-input" id="new_name" placeholder="Student full name" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--muted);">Email *</label>
+                <input class="form-input" id="new_email" type="email" placeholder="student@email.com" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--muted);">Program *</label>
+                <select class="form-select form-input" id="new_program" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+                  <option>Dance</option>
+                  <option>Vocal Performance</option>
+                  <option>Science</option>
+                  <option>Literature</option>
+                  <option>Multiple Programs</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--muted);">Level</label>
+              <select class="form-select form-input" id="new_level" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+                <option>Beginner</option>
+                <option>Intermediate</option>
+                <option>Advanced</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--muted);">Temporary Password *</label>
+              <input class="form-input" id="new_pass" type="text" placeholder="Set initial password" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+            </div>
+            <button class="btn-primary" onclick="createStudentID()" style="margin-top:8px;">Generate Student ID →</button>
+            <div class="generated-id" id="generatedIDBox">YOYO-25-0001</div>
+            <div id="generatedDetails" style="display:none;background:var(--cream);border:1px solid #eee;padding:16px;margin-top:0;font-size:13px;line-height:2;">
+              <!-- details injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- APPLICATIONS -->
+      <div id="tea-applications" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Admission Applications</div><div class="dash-subtitle">Review and respond to applicants</div></div>
+        <div id="applicationsList">
+          <!-- populated by JS -->
+        </div>
+      </div>
+
+      <!-- CLASSES -->
+      <div id="tea-classes" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Class Management</div><div class="dash-subtitle">All active classes and capacity</div></div>
+        <div class="card">
+          <div class="card-title">🏫 Active Classes</div>
+          <table class="schedule-table">
+            <thead><tr><th>Class</th><th>Category</th><th>Teacher</th><th>Enrolled</th><th>Max</th><th>Waitlist</th></tr></thead>
+            <tbody>
+              <tr><td>Hip-Hop Elite A</td><td><span class="badge badge-dance">Dance</span></td><td>Ms. Rivera</td><td>12</td><td>15</td><td>0</td></tr>
+              <tr><td>Ballet Foundation</td><td><span class="badge badge-dance">Dance</span></td><td>Ms. Rivera</td><td>15</td><td>15</td><td>3</td></tr>
+              <tr><td>Vocal Performance I</td><td><span class="badge badge-vocal">Vocal</span></td><td>Ms. Chen</td><td>10</td><td>12</td><td>0</td></tr>
+              <tr><td>Physics Advanced</td><td><span class="badge badge-science">Science</span></td><td>Mr. Park</td><td>8</td><td>20</td><td>0</td></tr>
+              <tr><td>Creative Writing</td><td><span class="badge badge-lit">Literature</span></td><td>Ms. Lim</td><td>14</td><td>16</td><td>1</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- GRADING -->
+      <div id="tea-grading" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Grading</div><div class="dash-subtitle">Update student grades and write feedback</div></div>
+        <div class="card">
+          <div class="card-title">✏️ Grade a Student</div>
+          <div style="max-width:500px;">
+            <div class="form-group">
+              <label class="form-label" style="color:var(--muted);">Select Student</label>
+              <select class="form-select form-input" id="grade_student" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+                <option value="">-- Select --</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" style="color:var(--muted);">Subject</label>
+                <select class="form-select form-input" id="grade_subject" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+                  <option>Dance — Hip-Hop Elite</option>
+                  <option>Vocal Performance I</option>
+                  <option>Physics</option>
+                  <option>Creative Writing</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label class="form-label" style="color:var(--muted);">Score (0–100)</label>
+                <input class="form-input" id="grade_score" type="number" min="0" max="100" placeholder="e.g. 88" style="background:var(--cream);border:1px solid #ddd;color:var(--text);">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" style="color:var(--muted);">Teacher Feedback</label>
+              <textarea class="form-input form-textarea" id="grade_feedback" placeholder="Write personalised feedback for the student..." style="background:var(--cream);border:1px solid #ddd;color:var(--text);min-height:80px;"></textarea>
+            </div>
+            <button class="btn-primary" onclick="submitGrade()">Save Grade & Feedback →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- SCHEDULE -->
+      <div id="tea-schedule" class="dash-panel">
+        <div class="dash-header"><div class="dash-title">Schedule Overview</div><div class="dash-subtitle">Full academy timetable</div></div>
+        <div class="card">
+          <table class="schedule-table">
+            <thead><tr><th>Day</th><th>Time</th><th>Class</th><th>Teacher</th><th>Room</th></tr></thead>
+            <tbody>
+              <tr><td>Mon</td><td>09:00–10:30</td><td><span class="badge badge-science">Science</span> Physics</td><td>Mr. Park</td><td>Lab 2</td></tr>
+              <tr><td>Mon</td><td>13:00–14:30</td><td><span class="badge badge-lit">Literature</span> Creative Writing</td><td>Ms. Lim</td><td>Room 301</td></tr>
+              <tr><td>Tue</td><td>10:00–11:30</td><td><span class="badge badge-dance">Dance</span> Ballet Foundation</td><td>Ms. Rivera</td><td>Studio B</td></tr>
+              <tr><td>Wed</td><td>10:00–11:30</td><td><span class="badge badge-vocal">Vocal</span> Performance I</td><td>Ms. Chen</td><td>Music Hall</td></tr>
+              <tr><td>Thu</td><td>16:00–17:30</td><td><span class="badge badge-dance">Dance</span> Hip-Hop Elite A</td><td>Ms. Rivera</td><td>Studio A</td></tr>
+              <tr><td>Fri</td><td>09:00–10:30</td><td><span class="badge badge-science">Science</span> Chemistry</td><td>Mr. Park</td><td>Lab 1</td></tr>
+              <tr><td>Fri</td><td>13:00–14:30</td><td><span class="badge badge-lit">Literature</span> World Lit</td><td>Ms. Lim</td><td>Room 302</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     SIGN IN / SIGN UP MODAL
+═══════════════════════════════════════════ -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="tab-switcher">
+      <button class="tab-switch-btn active" id="signinTab" onclick="switchAuthTab('signin')">Sign In</button>
+      <button class="tab-switch-btn" id="signupTab" onclick="switchAuthTab('signup')">Sign Up</button>
+    </div>
+
+    <!-- SIGN IN -->
+    <div id="signinForm">
+      <div class="modal-title">Welcome Back</div>
+      <div class="modal-sub">Sign in to your YOYO Star Academy account</div>
+      <div class="mode-toggle">
+        <button class="mode-btn active" id="modeStudent" onclick="setMode('student')">🧑‍🎓 Student</button>
+        <button class="mode-btn" id="modeTeacher" onclick="setMode('teacher')">👑 Teacher / CEO</button>
+      </div>
+      <div id="studentLoginFields">
+        <div class="form-group">
+          <label class="form-label">Student ID</label>
+          <input class="form-input" id="login_id" placeholder="e.g. YOYO-25-0001">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Password</label>
+          <input class="form-input" id="login_pass" type="password" placeholder="••••••••">
+        </div>
+      </div>
+      <div id="teacherLoginFields" style="display:none;">
+        <div class="form-group">
+          <label class="form-label">Admin Password</label>
+          <input class="form-input" id="admin_pass" type="password" placeholder="Enter admin password">
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px;">Hint: use <strong>admin123</strong> for demo</div>
+      </div>
+      <button class="btn-primary" style="width:100%;padding:14px;" onclick="doSignIn()">Sign In →</button>
+      <div class="modal-footer">Don't have an account? <a onclick="switchAuthTab('signup')">Apply here</a></div>
+    </div>
+
+    <!-- SIGN UP -->
+    <div id="signupForm" style="display:none;">
+      <div class="modal-title">Create Account</div>
+      <div class="modal-sub">Register as a new student — you'll need a Student ID from the academy.</div>
+      <div class="form-group">
+        <label class="form-label">Full Name</label>
+        <input class="form-input" id="reg_name" placeholder="Your full name">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Student ID (given by academy)</label>
+        <input class="form-input" id="reg_id" placeholder="YOYO-25-XXXX">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Email</label>
+        <input class="form-input" id="reg_email" type="email" placeholder="your@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Set Password</label>
+        <input class="form-input" id="reg_pass" type="password" placeholder="Choose a password">
+      </div>
+      <button class="btn-primary" style="width:100%;padding:14px;" onclick="doSignUp()">Create Account →</button>
+      <div class="modal-footer">Already have an account? <a onclick="switchAuthTab('signin')">Sign in</a></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<!-- ═══════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════ -->
+<script>
+// ── DATA STORE ──
+let db = {
+  students: [
+    { id:'YOYO-25-0001', name:'Luna Chen', email:'luna@yoyo.edu', pass:'luna123', program:'Vocal Performance', level:'Intermediate' },
+    { id:'YOYO-25-0002', name:'Alex Kim', email:'alex@yoyo.edu', pass:'alex123', program:'Dance', level:'Advanced' },
+    { id:'YOYO-25-0003', name:'Zara Patel', email:'zara@yoyo.edu', pass:'zara123', program:'Science', level:'Beginner' }
+  ],
+  applications: [
+    { id:'APP001', name:'Mei Lin', email:'mei@email.com', program:'Dance', level:'Intermediate', bio:'I have been dancing since age 5 and dream of performing on stage.', status:'pending', date:'Dec 5, 2025', parent:'Mrs. Lin' },
+    { id:'APP002', name:'James Park', email:'james@email.com', program:'Science', level:'Advanced', bio:'I love physics and want to combine science with performing arts.', status:'pending', date:'Dec 5, 2025', parent:'Mr. Park Sr.' },
+    { id:'APP003', name:'Sofia Russo', email:'sofia@email.com', program:'Vocal Performance', level:'Beginner', bio:'I have always loved singing and want to train professionally.', status:'interview', date:'Dec 1, 2025', parent:'Ms. Russo' }
+  ],
+  nextNum: 4,
+  currentUser: null,
+  loginMode: 'student'
+};
+
+// Persist in sessionStorage
+function saveDB() { sessionStorage.setItem('yoyoDB', JSON.stringify({ students:db.students, applications:db.applications, nextNum:db.nextNum })); }
+function loadDB() {
+  const saved = sessionStorage.getItem('yoyoDB');
+  if(saved) { const d=JSON.parse(saved); db.students=d.students; db.applications=d.applications; db.nextNum=d.nextNum; }
+}
+loadDB();
+
+// ── STARS ──
+(function(){
+  const c = document.getElementById('starsContainer');
+  for(let i=0;i<60;i++){
+    const s=document.createElement('div'); s.className='star';
+    s.style.cssText=`left:${Math.random()*100}%;top:${Math.random()*100}%;--d:${2+Math.random()*4}s;--delay:${Math.random()*4}s;--op:${0.3+Math.random()*0.7};`;
+    c.appendChild(s);
+  }
+})();
+
+// ── PAGES ──
+function showPage(p) {
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  window.scrollTo(0,0);
+  // Navbar
+  const isHome = p==='home';
+  document.querySelector('.nav-links').style.display = isHome ? 'flex' : 'none';
+  document.getElementById('navLoggedIn').style.display = isHome ? 'none' : 'flex';
+  if(!isHome && db.currentUser){
+    document.getElementById('navUserName').textContent = db.currentUser.name + ' · ' + db.currentUser.id;
+  }
+}
+function goHome(){ showPage('home'); }
+
+// ── SCROLL ──
+function scrollToPrograms(){ showPage('home'); setTimeout(()=>document.getElementById('programsSection').scrollIntoView({behavior:'smooth'}),100); }
+function scrollToAdmission(){ showPage('home'); setTimeout(()=>document.getElementById('admissionSection').scrollIntoView({behavior:'smooth'}),100); }
+
+// ── MODAL ──
+function openModal(tab='signin'){
+  document.getElementById('authModal').classList.add('open');
+  switchAuthTab(tab);
+}
+function closeModal(){ document.getElementById('authModal').classList.remove('open'); }
+document.getElementById('authModal').addEventListener('click',function(e){ if(e.target===this)closeModal(); });
+
+function switchAuthTab(tab){
+  document.getElementById('signinForm').style.display = tab==='signin'?'block':'none';
+  document.getElementById('signupForm').style.display = tab==='signup'?'block':'none';
+  document.getElementById('signinTab').classList.toggle('active', tab==='signin');
+  document.getElementById('signupTab').classList.toggle('active', tab==='signup');
+}
+
+function setMode(m){
+  db.loginMode = m;
+  document.getElementById('modeStudent').classList.toggle('active',m==='student');
+  document.getElementById('modeTeacher').classList.toggle('active',m==='teacher');
+  document.getElementById('studentLoginFields').style.display = m==='student'?'block':'none';
+  document.getElementById('teacherLoginFields').style.display = m==='teacher'?'block':'none';
+}
+
+// ── SIGN IN ──
+function doSignIn(){
+  if(db.loginMode==='teacher'){
+    const p = document.getElementById('admin_pass').value.trim();
+    if(p==='admin123'){ closeModal(); enterTeacherMode(); toast('Welcome back, Principal! 👑'); }
+    else { toast('❌ Wrong admin password. Try: admin123','error'); }
+    return;
+  }
+  const sid = document.getElementById('login_id').value.trim().toUpperCase();
+  const pass = document.getElementById('login_pass').value.trim();
+  const stu = db.students.find(s=>s.id===sid && s.pass===pass);
+  if(stu){ closeModal(); enterStudentMode(stu); toast('Welcome back, '+stu.name.split(' ')[0]+' ✨'); }
+  else { toast('❌ Student ID or password incorrect.','error'); }
+}
+
+// ── SIGN UP ──
+function doSignUp(){
+  const name = document.getElementById('reg_name').value.trim();
+  const sid = document.getElementById('reg_id').value.trim().toUpperCase();
+  const email = document.getElementById('reg_email').value.trim();
+  const pass = document.getElementById('reg_pass').value.trim();
+  if(!name||!sid||!email||!pass){ toast('Please fill all fields','error'); return; }
+  // Check ID exists and not taken
+  const stu = db.students.find(s=>s.id===sid);
+  if(!stu){ toast('❌ Student ID not found. Get your ID from the principal first.','error'); return; }
+  if(stu.email && stu.email!==email){ toast('❌ Email does not match records.','error'); return; }
+  // Update password
+  stu.pass = pass; stu.email = email; saveDB();
+  closeModal();
+  enterStudentMode(stu);
+  toast('Account created! Welcome to YOYO Star Academy 🌟');
+}
+
+// ── ENTER MODES ──
+function enterStudentMode(stu){
+  db.currentUser = stu;
+  document.getElementById('stuName').textContent = stu.name;
+  document.getElementById('stuIDDisplay').textContent = stu.id;
+  document.getElementById('stuAvatar').textContent = stu.name[0];
+  document.getElementById('stuGreetName').textContent = stu.name.split(' ')[0];
+  document.getElementById('profileName').textContent = stu.name;
+  document.getElementById('profileID').textContent = stu.id;
+  document.getElementById('profileEmail').textContent = stu.email||'—';
+  document.getElementById('profileProgram').textContent = stu.program||'—';
+  document.getElementById('profileLevel').textContent = stu.level||'—';
+  document.getElementById('profileAvatar').textContent = stu.name[0];
+  showDashPanel('stu','home');
+  showPage('student');
+}
+
+function enterTeacherMode(){
+  refreshStudentRegistry();
+  refreshApplications();
+  refreshGradeSelect();
+  document.getElementById('totalStudents').textContent = db.students.length;
+  document.getElementById('pendingApps').textContent = db.applications.filter(a=>a.status==='pending').length;
+  showDashPanel('tea','home');
+  showPage('teacher');
+}
+
+// ── LOGOUT ──
+function logout(){
+  db.currentUser = null;
+  showPage('home');
+  toast('Signed out successfully.');
+}
+
+// ── DASHBOARD PANELS ──
+function showDashPanel(mode, panel){
+  document.querySelectorAll(`#page-${mode==='stu'?'student':'teacher'} .dash-panel`).forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll(`#page-${mode==='stu'?'student':'teacher'} .sidebar-nav a`).forEach(a=>a.classList.remove('active'));
+  document.getElementById(`${mode}-${panel}`).classList.add('active');
+  const links = document.querySelectorAll(`#page-${mode==='stu'?'student':'teacher'} .sidebar-nav a`);
+  links.forEach(a=>{ if(a.getAttribute('onclick')&&a.getAttribute('onclick').includes(`'${panel}'`)) a.classList.add('active'); });
+}
+
+// ── CREATE STUDENT ID ──
+function createStudentID(){
+  const name = document.getElementById('new_name').value.trim();
+  const email = document.getElementById('new_email').value.trim();
+  const program = document.getElementById('new_program').value;
+  const level = document.getElementById('new_level').value;
+  const pass = document.getElementById('new_pass').value.trim();
+  if(!name||!email||!pass){ toast('Please fill all required fields','error'); return; }
+  const year = new Date().getFullYear().toString().slice(-2);
+  const num = String(db.nextNum).padStart(4,'0');
+  const newID = `YOYO-${year}-${num}`;
+  db.students.push({ id:newID, name, email, pass, program, level });
+  db.nextNum++;
+  saveDB();
+  const box = document.getElementById('generatedIDBox');
+  box.textContent = newID; box.classList.add('show');
+  const det = document.getElementById('generatedDetails');
+  det.style.display='block';
+  det.innerHTML=`<strong>✅ Student Created Successfully</strong><br>
+    Name: <strong>${name}</strong><br>
+    Student ID: <strong style="color:var(--gold-dark);">${newID}</strong><br>
+    Program: ${program} · Level: ${level}<br>
+    Password: <code style="background:#eee;padding:2px 6px;">${pass}</code><br><br>
+    <em style="color:var(--muted);">Share this ID and password with the student so they can Sign In or Sign Up.</em>`;
+  refreshStudentRegistry();
+  refreshGradeSelect();
+  document.getElementById('totalStudents').textContent = db.students.length;
+  toast(`Student ID ${newID} created for ${name}! 🎉`);
+}
+
+// ── STUDENT REGISTRY ──
+function refreshStudentRegistry(){
+  const el = document.getElementById('studentRegistry');
+  if(!el) return;
+  el.innerHTML = db.students.map(s=>`
+    <div class="student-row">
+      <div class="student-avatar">${s.name[0]}</div>
+      <div class="student-info">
+        <div class="student-name">${s.name}</div>
+        <div class="student-id-text">${s.id} · ${s.program||'—'} · ${s.level||'—'}</div>
+      </div>
+      <div><span class="badge badge-green">Active</span></div>
+    </div>`).join('');
+}
+
+// ── APPLICATIONS ──
+function refreshApplications(){
+  const el = document.getElementById('applicationsList');
+  if(!el) return;
+  el.innerHTML = db.applications.map((a,i)=>`
+    <div class="app-card ${a.status}" id="appCard${i}">
+      <div class="app-name">${a.name}</div>
+      <div class="app-meta">📧 ${a.email} · Program: ${a.program} · Level: ${a.level} · Applied: ${a.date}</div>
+      <div style="font-size:13px;color:var(--text);margin-bottom:12px;line-height:1.7;">"${a.bio}"</div>
+      ${a.status==='pending'?`
+        <div class="app-actions">
+          <button class="btn-sm btn-interview" onclick="replyApp(${i},'interview')">📅 Schedule Interview</button>
+          <button class="btn-sm btn-approve" onclick="replyApp(${i},'approved')">✅ Approve</button>
+          <button class="btn-sm btn-reject" onclick="replyApp(${i},'rejected')">✗ Reject</button>
+        </div>` :
+      a.status==='interview'?`<div style="font-size:12px;color:#6366F1;font-weight:600;">📅 Interview Scheduled — awaiting confirmation from ${a.name}</div>` :
+      a.status==='approved'?`<div style="font-size:12px;color:var(--green);font-weight:600;">✅ Approved — Student notified</div>` :
+      `<div style="font-size:12px;color:var(--red);font-weight:600;">✗ Not Accepted</div>`}
+    </div>`).join('');
+}
+
+function replyApp(i, action){
+  db.applications[i].status = action;
+  saveDB();
+  refreshApplications();
+  document.getElementById('pendingApps').textContent = db.applications.filter(a=>a.status==='pending').length;
+  const msgs = {
+    interview: `📅 Interview scheduled! ${db.applications[i].name} will receive an email with interview details.`,
+    approved: `✅ ${db.applications[i].name} has been approved! Create their Student ID next.`,
+    rejected: `Application from ${db.applications[i].name} has been declined.`
+  };
+  toast(msgs[action]);
+}
+
+// ── GRADING ──
+function refreshGradeSelect(){
+  const sel = document.getElementById('grade_student');
+  if(!sel) return;
+  sel.innerHTML = '<option value="">-- Select Student --</option>' +
+    db.students.map(s=>`<option value="${s.id}">${s.name} (${s.id})</option>`).join('');
+}
+
+function submitGrade(){
+  const stu = document.getElementById('grade_student').value;
+  const subj = document.getElementById('grade_subject').value;
+  const score = document.getElementById('grade_score').value;
+  const fb = document.getElementById('grade_feedback').value;
+  if(!stu||!score){ toast('Please select a student and enter a score','error'); return; }
+  toast(`✅ Grade saved: ${subj} — ${score}/100 for ${db.students.find(s=>s.id===stu)?.name}`);
+  document.getElementById('grade_score').value='';
+  document.getElementById('grade_feedback').value='';
+}
+
+// ── ADMISSION FORM ──
+function submitAdmission(e){
+  e.preventDefault();
+  const app = {
+    id: 'APP'+Date.now(),
+    name: document.getElementById('adm_first').value+' '+document.getElementById('adm_last').value,
+    email: document.getElementById('adm_email').value,
+    program: document.getElementById('adm_program').value,
+    level: document.getElementById('adm_level').value,
+    bio: document.getElementById('adm_bio').value,
+    parent: document.getElementById('adm_parent').value,
+    status: 'pending',
+    date: new Date().toLocaleDateString('en-US',{year:'numeric',month:'short',day:'numeric'})
+  };
+  db.applications.unshift(app);
+  saveDB();
+  document.getElementById('admissionForm').reset();
+  toast('🎉 Application submitted! Our team will contact you within 48 hours to schedule an interview.');
+}
+
+// ── TOAST ──
+function toast(msg, type='success'){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderLeftColor = type==='error'?'#C0392B':'var(--gold)';
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'), 4000);
+}
+
+// ── INIT ──
+refreshStudentRegistry();
+refreshApplications();
+refreshGradeSelect();
+</script>
+</body>
+</html>
