@@ -622,7 +622,7 @@ hr.divider { border:none; border-top:1px solid #eee; margin:20px 0; }
   <div class="nav-links" id="navLinks">
     <a onclick="scrollToPrograms()">Programs</a>
     <a onclick="scrollToAdmission()">Admission</a>
-    <a onclick="showPage('home')">About</a>
+    <a onclick="scrollToAbout()">About</a>
     <button class="nav-btn outline" onclick="openModal('signin')">Sign In</button>
     <button class="nav-btn" onclick="openModal('signup')">Apply Now</button>
   </div>
@@ -687,6 +687,48 @@ hr.divider { border:none; border-top:1px solid #eee; margin:20px 0; }
       </div>
     </div>
   </section>
+  <!-- ACADEMY INFO -->
+<section class="section" id="aboutSection">
+  <div class="section-tag">Academy Information</div>
+  <h2 class="section-title">Scholarships & Term Dates</h2>
+  <p class="section-subtitle">
+    Important information for students and families.
+  </p>
+
+  <div class="programs-grid">
+
+    <div class="program-card">
+      <div class="program-icon">🎓</div>
+      <div class="program-name">Scholarships</div>
+      <div class="program-desc">
+        Merit scholarships available for outstanding performance in Dance,
+        Vocal, Science, and Literature. Applications open each term.
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-icon">📅</div>
+      <div class="program-name">Term Dates</div>
+      <div class="program-desc">
+        Term 1: Sep – Dec<br>
+        Term 2: Jan – Mar<br>
+        Term 3: Apr – Jun<br>
+        Summer Showcase: July
+      </div>
+    </div>
+
+    <div class="program-card">
+      <div class="program-icon">💰</div>
+      <div class="program-name">Tuition & Fees</div>
+      <div class="program-desc">
+        Flexible payment plans available. Financial assistance offered for
+        qualified students.
+      </div>
+    </div>
+
+  </div>
+</section>
+
 
   <!-- ADMISSION -->
   <section class="admission-section" id="admissionSection">
@@ -1264,6 +1306,12 @@ function goHome(){ showPage('home'); }
 // ── SCROLL ──
 function scrollToPrograms(){ showPage('home'); setTimeout(()=>document.getElementById('programsSection').scrollIntoView({behavior:'smooth'}),100); }
 function scrollToAdmission(){ showPage('home'); setTimeout(()=>document.getElementById('admissionSection').scrollIntoView({behavior:'smooth'}),100); }
+function scrollToAbout(){
+  showPage('home');
+  setTimeout(()=>document
+    .getElementById('aboutSection')
+    .scrollIntoView({behavior:'smooth'}),100);
+}
 
 // ── MODAL ──
 function openModal(tab='signin'){
